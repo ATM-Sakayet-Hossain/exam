@@ -47,8 +47,10 @@ const updateTask = async (req, res) => {
 const deleteTask = async (req, res) => {
     try {
         const {id} = req.params
-        const task = await taskSchema.findById(id)
+        const task = await taskSchema.findByIdAndDelete(id)
+        // const task = await taskSchema.findById(id)
         if(!task) return responceHandler.error(res, 404, "task not find")
+        responceHandler.success(res, 200, "task delete successfully")
     } catch (error) {
         responceHandler.error(res, 500, "internal server error")
         console.log(error)
