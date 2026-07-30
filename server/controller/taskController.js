@@ -15,11 +15,18 @@ const createTask = async (req, res) => {
         await task.save()
         responceHandler.success(res, 201, "create seccessfully", task)
     } catch (error) {
+        responceHandler.error(res, 500, "internal server error")
         console.log(error)
     }
 }
 const getAllTask = async (req, res) => {
-    
+    try {
+      const tasks = await taskSchema.find()
+      responceHandler.success(res, 200, "", tasks)
+    } catch (error) {
+        responceHandler.error(res, 500, "internal server error")
+        console.log(error)
+    }
 }
 
-module.exports = {createTask}
+module.exports = {createTask, getAllTask}
