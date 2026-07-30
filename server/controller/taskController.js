@@ -45,4 +45,4 @@ const updateTask = async (req, res) => {
     }
 }
 
-module.exports = {createTask, getAllTask}
+module.exports = {createTask, getAllTask, updateTask}
