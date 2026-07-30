@@ -44,5 +44,15 @@ const updateTask = async (req, res) => {
         console.log(error)
     }
 }
+const deleteTask = async (req, res) => {
+    try {
+        const {id} = req.params
+        const task = await taskSchema.findById(id)
+        if(!task) return responceHandler.error(res, 404, "task not find")
+    } catch (error) {
+        responceHandler.error(res, 500, "internal server error")
+        console.log(error)
+    }
+}
 
-module.exports = {createTask, getAllTask, updateTask}
+module.exports = {createTask, getAllTask, updateTask, deleteTask}
